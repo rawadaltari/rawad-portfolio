@@ -1,0 +1,199 @@
+@import 'tailwindcss';
+
+/* Theme is driven by [data-theme] on <html>; `dark:` variant follows it. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* ------------------------------------------------------------------ */
+/*  Design tokens                                                      */
+/* ------------------------------------------------------------------ */
+:root,
+[data-theme='dark'] {
+  --bg: #08090b;
+  --surface: #0e1013;
+  --surface-2: #14171b;
+  --elevated: #191d22;
+  --line: rgb(255 255 255 / 0.08);
+  --line-strong: rgb(255 255 255 / 0.16);
+  --fg: #eceef0;
+  --fg-muted: #a3a9b1;
+  --fg-subtle: #7b828b;
+  --accent: #ff8a4c;
+  --accent-strong: #ffa774;
+  --accent-fg: #170a03;
+  --accent-soft: rgb(255 138 76 / 0.12);
+  --node: 236 238 240;
+  --node-accent: 255 138 76;
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 24px 60px -30px rgb(0 0 0 / 0.8);
+  --grid-line: rgb(255 255 255 / 0.035);
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #efede7;
+  --elevated: #ffffff;
+  --line: rgb(18 19 22 / 0.09);
+  --line-strong: rgb(18 19 22 / 0.18);
+  --fg: #121316;
+  --fg-muted: #4f545b;
+  --fg-subtle: #6a7078;
+  --accent: #c2410c;
+  --accent-strong: #9a3412;
+  --accent-fg: #ffffff;
+  --accent-soft: rgb(194 65 12 / 0.09);
+  --node: 18 19 22;
+  --node-accent: 194 65 12;
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.9) inset, 0 20px 50px -30px rgb(18 19 22 / 0.25);
+  --grid-line: rgb(18 19 22 / 0.045);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-elevated: var(--elevated);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-sans: 'Inter Tight Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --shadow-card: var(--shadow-card);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@theme {
+  --breakpoint-xs: 25rem;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-pulse-dot: pulse-dot 2.4s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -10px, 0); }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.8); }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  body {
+    @apply bg-bg text-fg font-sans antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+    overflow-x: clip;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-fg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  img { @apply max-w-full; }
+
+  h1, h2, h3, h4 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Utilities                                                          */
+/* ------------------------------------------------------------------ */
+@utility container-page {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 40rem) { padding-inline: 1.5rem; }
+  @media (width >= 64rem) { padding-inline: 2rem; }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+/* Faint engineering grid, masked to fade at edges */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility mask-fade-y {
+  mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 85%, transparent);
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+@utility mask-radial {
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+
+@utility card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-card);
+}
+
+/* Theme switch circular reveal (View Transitions API) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Global reduced motion safety net */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes dash {
+  to { stroke-dashoffset: -24; }
+}

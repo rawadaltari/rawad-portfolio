@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rawad-altari.netlify.app/sitemap.xml

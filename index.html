@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Rawad Altari | Artificial Intelligence Engineer &amp; Front-End Developer</title>
+    <meta
+      name="description"
+      content="Personal portfolio of Rawad Altari — Artificial Intelligence Engineer and Front-End Developer specializing in React.js, modern web applications, AI, and Machine Learning."
+    />
+    <meta name="author" content="Rawad Altari" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
+
+    <!-- Theme colour follows the active theme (updated at runtime) -->
+    <meta name="theme-color" content="#08090b" />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rawad Altari" />
+    <meta property="og:title" content="Rawad Altari | Artificial Intelligence Engineer &amp; Front-End Developer" />
+    <meta
+      property="og:description"
+      content="AI Engineer and Front-End Developer building intelligent, modern, user-focused web experiences with React.js, Machine Learning and AI."
+    />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Rawad Altari — Artificial Intelligence Engineer &amp; Front-End Developer" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Rawad Altari | Artificial Intelligence Engineer &amp; Front-End Developer" />
+    <meta
+      name="twitter:description"
+      content="AI Engineer and Front-End Developer specializing in React.js, modern web applications, AI, and Machine Learning."
+    />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/og-image.png" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Rawad Altari",
+        "jobTitle": ["Artificial Intelligence Engineer", "Front-End Developer"],
+        "email": "mailto:rawad.microsoft@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Damascus", "addressCountry": "SY" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Syrian Virtual University" },
+        "knowsAbout": ["Artificial Intelligence", "Machine Learning", "React.js", "Front-End Development", "UI/UX Design"],
+        "url": "%VITE_SITE_URL%/",
+        "sameAs": ["https://github.com/rawadaltari"]
+      }
+    </script>
+
+    <!-- Apply saved theme before first paint (prevents flash). Default: dark. -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('ra-theme');
+          if (t !== 'light' && t !== 'dark') t = 'dark';
+          document.documentElement.dataset.theme = t;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p style="padding:24px;font-family:system-ui,sans-serif">
+        Rawad Altari — Artificial Intelligence Engineer &amp; Front-End Developer. Email:
+        <a href="mailto:rawad.microsoft@gmail.com">rawad.microsoft@gmail.com</a>
+      </p>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

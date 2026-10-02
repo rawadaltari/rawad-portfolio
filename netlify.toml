@@ -1,0 +1,9 @@
+# Netlify build settings. `public/_headers` adds the caching and security headers.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # Public site URL — fills %VITE_SITE_URL% in index.html (canonical + Open Graph tags).
+  VITE_SITE_URL = "https://rawad-altari.netlify.app"

@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.local
+*.log
+.DS_Store
+.netlify
+
+# Untouched PNG/JPG screenshot originals — the deployed WebP versions live in public/
+image-sources
